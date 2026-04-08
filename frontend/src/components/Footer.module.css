@@ -1,0 +1,18 @@
+.footer {
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255,255,255,0.6);
+  padding: 22px 32px;
+  text-align: center;
+}
+.quote {
+  color: #0369a1;
+  font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.copy {
+  color: #64748b;
+  font-size: 0.8rem;
+}
