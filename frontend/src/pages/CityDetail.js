@@ -30,7 +30,7 @@ export default function CityDetail() {
   const [threshold, setThreshold] = useState(150);
   const [showThresholdInput, setShowThresholdInput] = useState(false);
   const [thresholdAlert, setThresholdAlert] = useState(false);
-  const [favorites, setFavorites] = useState([]);
+  const [setFavorites] = useState([]);
 
   const headers = { Authorization: `Bearer ${token}` };
 
