@@ -6,7 +6,8 @@ body {
   min-height: 100vh;
   background:
     linear-gradient(120deg, #01111a73 0%, rgba(4, 50, 81, 0.35) 50%, rgba(186,230,255,0.45) 100%),
-    url('C:\Users\DELL\OneDrive\Desktop\AirAware_project\AirAware\frontend\src\components\tim-witzdam-lIv6L0eqNBI-unsplash.jpg')
+    /* url('C:\Users\DELL\OneDrive\Desktop\AirAware_project\AirAware\frontend\src\components\tim-witzdam-lIv6L0eqNBI-unsplash.jpg') */
+    
     center/cover fixed;
 }
 
