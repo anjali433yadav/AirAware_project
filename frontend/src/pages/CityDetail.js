@@ -14,6 +14,7 @@ import styles from './CityDetail.module.css';
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
 
 export default function CityDetail() {
+  const BASE_URL = "https://airaware-project.onrender.com";
   const { cityName } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -45,9 +46,9 @@ export default function CityDetail() {
 
       // If this city matches the live location city, use bylocation (avoids geocode failure)
       if (lat && lon && storedCity && storedCity.toLowerCase() === decodeURIComponent(cityName).toLowerCase()) {
-        res = await axios.get('/api/air/bylocation', { params: { lat, lon }, headers });
+        res = await axios.get(`${BASE_URL}/api/air/bylocation`, { params: { lat, lon }, headers });
       } else {
-        res = await axios.get('/api/air/current', { params: { city: decodeURIComponent(cityName) }, headers });
+        res = await axios.get(`${BASE_URL}/api/air/current`, { params: { city: decodeURIComponent(cityName) }, headers });
       }
       setAirData(res.data);
 
@@ -83,7 +84,7 @@ export default function CityDetail() {
     try {
       setHistoryLoading(true);
       const cityQuery = airData?.city || decodeURIComponent(cityName);
-      const res = await axios.get('/api/air/history', { params: { city: cityQuery }, headers });
+      const res = await axios.get(`${BASE_URL}/api/air/history`, { params: { city: cityQuery }, headers });
       setHistory(res.data);
       setShowHistory(true);
     } catch {}
@@ -93,10 +94,10 @@ export default function CityDetail() {
 
   const toggleFavorite = async () => {
     if (isFav) {
-      await axios.delete(`/api/favorites/${favId}`, { headers });
+      await axios.delete(`${BASE_URL}/api/favorites/${favId}`, { headers });
       setIsFav(false); setFavId(null);
     } else {
-      const res = await axios.post('/api/favorites', { city: airData.city, threshold }, { headers });
+      const res = await axios.post(`${BASE_URL}/api/favorites`, { city: airData.city, threshold }, { headers });
       setIsFav(true); setFavId(res.data._id);
     }
   };
@@ -104,7 +105,7 @@ export default function CityDetail() {
   const updateThreshold = async (val) => {
     setThreshold(val);
     if (favId) {
-      await axios.put(`/api/favorites/${favId}`, { threshold: val }, { headers });
+      await axios.put(`${BASE_URL}/api/favorites/${favId}`, { threshold: val }, { headers });
     }
     if (airData && airData.aqi >= val) setThresholdAlert(true);
     else setThresholdAlert(false);

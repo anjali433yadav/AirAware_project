@@ -7,6 +7,7 @@ import Spinner from '../components/Spinner';
 import styles from './Dashboard.module.css';
 
 export default function Dashboard() {
+  const BASE_URL = "https://airaware-project.onrender.com";
   const { token } = useAuth();
   const navigate = useNavigate();
   const [airData, setAirData] = useState(null);
@@ -19,7 +20,7 @@ export default function Dashboard() {
     const lon = sessionStorage.getItem('lon');
     if (!lat || !lon) { navigate('/location'); return; }
 
-    axios.get('/api/air/bylocation', {
+    axios.get(`${BASE_URL}/api/air/bylocation`, {
       params: { lat, lon },
       headers: { Authorization: `Bearer ${token}` }
     })

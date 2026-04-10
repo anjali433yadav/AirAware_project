@@ -10,6 +10,7 @@ function validate({ username, email, password, confirmPassword }) {
     return 'Email must be a @gmail.com address.';
   if (password.length < 6)
     return 'Password must be at least 6 characters.';
+  const BASE_URL = "https://airaware-project.onrender.com";
   const capitals = (password.match(/[A-Z]/g) || []).length;
   const numbers  = (password.match(/[0-9]/g) || []).length;
   if (capitals < 2)
@@ -38,7 +39,7 @@ export default function Register() {
 
     setLoading(true);
     try {
-      await axios.post('/api/auth/register', {
+      await axios.post(`${BASE_URL}/api/auth/register`, {
         username: form.username,
         email: form.email,
         password: form.password,

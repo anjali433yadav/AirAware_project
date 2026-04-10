@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styles from './DeniedPage.module.css';
 
 export default function DeniedPage() {
+  const BASE_URL = "https://airaware-project.onrender.com";
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (search.trim()) navigate(`/city/${encodeURIComponent(search.trim())}`);
+    if (search.trim()) navigate(`${BASE_URL}/city/${encodeURIComponent(search.trim())}`);
   };
 
   return (
@@ -29,7 +30,7 @@ export default function DeniedPage() {
       </form>
 
       <div className={styles.actions}>
-        <button className={styles.favBtn} onClick={() => navigate('/favorites')}>
+        <button className={styles.favBtn} onClick={() => navigate(`${BASE_URL}/favorites`)}>
           ⭐ View Favorite Cities
         </button>
       </div>

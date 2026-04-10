@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import styles from './Favorites.module.css';
 
 export default function Favorites() {
+  const BASE_URL = "https://airaware-project.onrender.com";
   const { token } = useAuth();
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
@@ -13,14 +14,14 @@ export default function Favorites() {
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    axios.get('/api/favorites', { headers })
+    axios.get(`${BASE_URL}/api/favorites`, { headers })
       .then(res => setFavorites(res.data))
       .finally(() => setLoading(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const removeFav = async (id) => {
-    await axios.delete(`/api/favorites/${id}`, { headers });
+    await axios.delete(`${BASE_URL}/api/favorites/${id}`, { headers });
     setFavorites(prev => prev.filter(f => f._id !== id));
   };
 

@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import styles from './Auth.module.css';
 
 export default function Login() {
+  const BASE_URL = "https://airaware-project.onrender.com";
   const [form, setForm]   = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('/api/auth/login', form);
+      const res = await axios.post(`${BASE_URL}/api/auth/login`, form);
       login(res.data.token, res.data.username);
       navigate('/location');
     } catch (err) {

@@ -6,7 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "proxy": "http://localhost:5000",
+  
   "browserslist": {
     "production": [
       ">0.2%",
@@ -30,5 +30,6 @@
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.14.0",
     "react-scripts": "^5.0.1"
-  }
+  },
+  "main": "index.js"
 }
