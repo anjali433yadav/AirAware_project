@@ -11,6 +11,13 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get('/health', (req, res) => {
+  res.send({
+    "message": "SERVER IS OK",
+    "timestamp": Date.now()
+  })
+})
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/air', require('./routes/air'));
