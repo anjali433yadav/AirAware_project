@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import BASE_URL from '../config';
 import styles from './Favorites.module.css';
 
 export default function Favorites() {
-  const BASE_URL = "https://airaware-project.onrender.com";
   const { token } = useAuth();
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);

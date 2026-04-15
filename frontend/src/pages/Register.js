@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BASE_URL from '../config';
 import styles from './Auth.module.css';
 
 function validate({ username, email, password, confirmPassword }) {
@@ -10,7 +11,6 @@ function validate({ username, email, password, confirmPassword }) {
     return 'Email must be a @gmail.com address.';
   if (password.length < 6)
     return 'Password must be at least 6 characters.';
-  const BASE_URL = "https://airaware-project.onrender.com";
   const capitals = (password.match(/[A-Z]/g) || []).length;
   const numbers  = (password.match(/[0-9]/g) || []).length;
   if (capitals < 2)
@@ -67,46 +67,20 @@ export default function Register() {
         {success && <div className={styles.success}>{success}</div>}
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            className={styles.input}
-            type="text"
-            placeholder="Username (min 4 characters)"
-            value={form.username}
-            onChange={set('username')}
-            required
-          />
-          <input
-            className={styles.input}
-            type="email"
-            placeholder="Email (@gmail.com only)"
-            value={form.email}
-            onChange={set('email')}
-            required
-          />
-          <input
-            className={styles.input}
-            type="password"
-            placeholder="Password (min 6 chars, 2 uppercase, 1 number)"
-            value={form.password}
-            onChange={set('password')}
-            required
-          />
-          <input
-            className={styles.input}
-            type="password"
-            placeholder="Confirm Password"
-            value={form.confirmPassword}
-            onChange={set('confirmPassword')}
-            required
-          />
+          <input className={styles.input} type="text" placeholder="Username (min 4 characters)"
+            value={form.username} onChange={set('username')} required />
+          <input className={styles.input} type="email" placeholder="Email (@gmail.com only)"
+            value={form.email} onChange={set('email')} required />
+          <input className={styles.input} type="password" placeholder="Password (min 6 chars, 2 uppercase, 1 number)"
+            value={form.password} onChange={set('password')} required />
+          <input className={styles.input} type="password" placeholder="Confirm Password"
+            value={form.confirmPassword} onChange={set('confirmPassword')} required />
           <button className={styles.btn} type="submit" disabled={loading}>
             {loading ? <span className={styles.spinner}>⏳ Creating account...</span> : 'Register'}
           </button>
         </form>
 
-        <p className={styles.link}>
-          Already have an account? <Link to="/login">Sign in</Link>
-        </p>
+        <p className={styles.link}>Already have an account? <Link to="/login">Sign in</Link></p>
       </div>
     </div>
   );

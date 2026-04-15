@@ -4,10 +4,10 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import AirCard from '../components/AirCard';
 import Spinner from '../components/Spinner';
+import BASE_URL from '../config';
 import styles from './Dashboard.module.css';
 
 export default function Dashboard() {
-  const BASE_URL = "https://airaware-project.onrender.com";
   const { token } = useAuth();
   const navigate = useNavigate();
   const [airData, setAirData] = useState(null);
@@ -26,7 +26,6 @@ export default function Dashboard() {
     })
       .then(res => {
         setAirData(res.data);
-        // Store exact city name returned by API for accurate history lookup
         sessionStorage.setItem('cityName', res.data.city);
       })
       .catch(err => setError(err.response?.data?.message || 'Failed to fetch air data'))
@@ -43,12 +42,8 @@ export default function Dashboard() {
       <div className={styles.topBar}>
         <h1 className={styles.heading}>🌍 Your City Air Quality</h1>
         <form onSubmit={handleSearch} className={styles.searchForm}>
-          <input
-            className={styles.searchInput}
-            placeholder="Search another city..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
+          <input className={styles.searchInput} placeholder="Search another city..."
+            value={search} onChange={e => setSearch(e.target.value)} />
           <button type="submit" className={styles.searchBtn}>Search</button>
         </form>
       </div>

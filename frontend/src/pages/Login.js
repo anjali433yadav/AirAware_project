@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import BASE_URL from '../config';
 import styles from './Auth.module.css';
 
 export default function Login() {
-  const BASE_URL = "https://airaware-project.onrender.com";
   const [form, setForm]   = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,32 +39,16 @@ export default function Login() {
         {error && <div className={styles.error}>{error}</div>}
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            className={styles.input}
-            type="email"
-            placeholder="Email address"
-            value={form.email}
-            onChange={set('email')}
-            required
-          />
-          <input
-            className={styles.input}
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={set('password')}
-            required
-          />
+          <input className={styles.input} type="email" placeholder="Email address"
+            value={form.email} onChange={set('email')} required />
+          <input className={styles.input} type="password" placeholder="Password"
+            value={form.password} onChange={set('password')} required />
           <button className={styles.btn} type="submit" disabled={loading}>
-            {loading
-              ? <span className={styles.spinner}>⏳ Signing in...</span>
-              : 'Sign In'}
+            {loading ? <span className={styles.spinner}>⏳ Signing in...</span> : 'Sign In'}
           </button>
         </form>
 
-        <p className={styles.link}>
-          Don't have an account? <Link to="/register">Register here</Link>
-        </p>
+        <p className={styles.link}>Don't have an account? <Link to="/register">Register here</Link></p>
       </div>
     </div>
   );

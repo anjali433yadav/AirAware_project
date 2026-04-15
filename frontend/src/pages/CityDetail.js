@@ -9,29 +9,28 @@ import { Bar } from 'react-chartjs-2';
 import { useAuth } from '../context/AuthContext';
 import AirCard from '../components/AirCard';
 import Spinner from '../components/Spinner';
+import BASE_URL from '../config';
 import styles from './CityDetail.module.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
 
 export default function CityDetail() {
-  const BASE_URL = "https://airaware-project.onrender.com";
   const { cityName } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { token } = useAuth();
 
-  const [airData, setAirData] = useState(null);
-  const [history, setHistory] = useState([]);
-  const [showHistory, setShowHistory] = useState(false);
+  const [airData, setAirData]               = useState(null);
+  const [history, setHistory]               = useState([]);
+  const [showHistory, setShowHistory]       = useState(false);
   const [historyLoading, setHistoryLoading] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [isFav, setIsFav] = useState(false);
-  const [favId, setFavId] = useState(null);
-  const [threshold, setThreshold] = useState(150);
+  const [loading, setLoading]               = useState(true);
+  const [error, setError]                   = useState('');
+  const [isFav, setIsFav]                   = useState(false);
+  const [favId, setFavId]                   = useState(null);
+  const [threshold, setThreshold]           = useState(150);
   const [showThresholdInput, setShowThresholdInput] = useState(false);
   const [thresholdAlert, setThresholdAlert] = useState(false);
-  const [setFavorites] = useState([]);
 
   const headers = { Authorization: `Bearer ${token}` };
 
@@ -44,7 +43,6 @@ export default function CityDetail() {
       const lat = sessionStorage.getItem('lat');
       const lon = sessionStorage.getItem('lon');
 
-      // If this city matches the live location city, use bylocation (avoids geocode failure)
       if (lat && lon && storedCity && storedCity.toLowerCase() === decodeURIComponent(cityName).toLowerCase()) {
         res = await axios.get(`${BASE_URL}/api/air/bylocation`, { params: { lat, lon }, headers });
       } else {
@@ -52,9 +50,7 @@ export default function CityDetail() {
       }
       setAirData(res.data);
 
-      // Check favorites
-      const favRes = await axios.get('/api/favorites', { headers });
-      setFavorites(favRes.data);
+      const favRes = await axios.get(`${BASE_URL}/api/favorites`, { headers });
       const existing = favRes.data.find(f => f.city.toLowerCase() === res.data.city.toLowerCase());
       if (existing) {
         setIsFav(true);
@@ -72,7 +68,6 @@ export default function CityDetail() {
 
   useEffect(() => { fetchData(); }, [fetchData]);
 
-  // Auto-fetch history if ?history=1 is in URL, but only after airData is loaded
   useEffect(() => {
     if (airData && searchParams.get('history') === '1' && history.length === 0) {
       fetchHistory();
@@ -91,7 +86,6 @@ export default function CityDetail() {
     finally { setHistoryLoading(false); }
   };
 
-
   const toggleFavorite = async () => {
     if (isFav) {
       await axios.delete(`${BASE_URL}/api/favorites/${favId}`, { headers });
@@ -104,9 +98,7 @@ export default function CityDetail() {
 
   const updateThreshold = async (val) => {
     setThreshold(val);
-    if (favId) {
-      await axios.put(`${BASE_URL}/api/favorites/${favId}`, { threshold: val }, { headers });
-    }
+    if (favId) await axios.put(`${BASE_URL}/api/favorites/${favId}`, { threshold: val }, { headers });
     if (airData && airData.aqi >= val) setThresholdAlert(true);
     else setThresholdAlert(false);
   };
@@ -122,13 +114,8 @@ export default function CityDetail() {
 
   const makeChartData = (data, labelKey, valueKey, color) => ({
     labels: data.map(d => d[labelKey]),
-    datasets: [{
-      label: valueKey.toUpperCase(),
-      data: data.map(d => d[valueKey]),
-      backgroundColor: color,
-      borderColor: color,
-      borderWidth: 2,
-    }],
+    datasets: [{ label: valueKey.toUpperCase(), data: data.map(d => d[valueKey]),
+      backgroundColor: color, borderColor: color, borderWidth: 2 }],
   });
 
   return (
@@ -169,12 +156,8 @@ export default function CityDetail() {
           </button>
           {showThresholdInput && (
             <div className={styles.thresholdInput}>
-              <input
-                type="number"
-                value={threshold}
-                min={1} max={500}
-                onChange={e => updateThreshold(Number(e.target.value))}
-              />
+              <input type="number" value={threshold} min={1} max={500}
+                onChange={e => updateThreshold(Number(e.target.value))} />
             </div>
           )}
         </div>
@@ -191,29 +174,24 @@ export default function CityDetail() {
           <h3>📈 7-Day AQI History (Daily Average)</h3>
           <Bar data={makeChartData(history, 'date', 'aqi', 'rgba(56,189,248,0.7)')} options={chartOptions} />
           <div className={styles.multiCharts}>
-            <div className={styles.chartBox}>
-              <h4>PM2.5</h4>
+            <div className={styles.chartBox}><h4>PM2.5</h4>
               <Bar data={makeChartData(history, 'date', 'pm25', 'rgba(167,139,250,0.7)')} options={chartOptions} />
             </div>
-            <div className={styles.chartBox}>
-              <h4>PM10</h4>
+            <div className={styles.chartBox}><h4>PM10</h4>
               <Bar data={makeChartData(history, 'date', 'pm10', 'rgba(251,191,36,0.7)')} options={chartOptions} />
             </div>
-            <div className={styles.chartBox}>
-              <h4>CO</h4>
+            <div className={styles.chartBox}><h4>CO</h4>
               <Bar data={makeChartData(history, 'date', 'co', 'rgba(248,113,113,0.7)')} options={chartOptions} />
             </div>
-            <div className={styles.chartBox}>
-              <h4>NO₂</h4>
+            <div className={styles.chartBox}><h4>NO₂</h4>
               <Bar data={makeChartData(history, 'date', 'no2', 'rgba(52,211,153,0.7)')} options={chartOptions} />
             </div>
           </div>
         </div>
       )}
-      {showHistory && history.length === 0 && (
-        <div className={styles.noData}>No history data yet for <strong>{airData?.city || cityName}</strong>. Visit this city a few times and data will appear here.</div>
+      {showHistory && history.length === 0 && !historyLoading && (
+        <div className={styles.noData}>No history data yet for <strong>{airData?.city || cityName}</strong>.</div>
       )}
-
     </div>
   );
 }
