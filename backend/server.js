@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors({
-  origin:"air-aware-project-lcfm.vercel.app",
+  origin:"https://air-aware-project-lcfm.vercel.app",
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
