@@ -1,78 +1,87 @@
 .page {
-  max-width: 980px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 32px 20px;
+  animation: fadeUp 0.4s ease both;
 }
-.heading { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 28px; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.heading { font-size: 1.5rem; font-weight: 800; color: #f1f5f9; margin-bottom: 28px; }
 .loading {
   text-align: center;
-  color: #0369a1;
+  color: #a78bfa;
   padding: 60px;
-  background: rgba(255,255,255,0.5);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.03);
+  border-radius: 18px;
+  border: 1px solid rgba(139,92,246,0.1);
 }
 .empty {
   text-align: center;
   padding: 60px 20px;
-  color: #64748b;
-  background: rgba(255,255,255,0.55);
+  color: #475569;
+  background: rgba(255,255,255,0.03);
   border-radius: 20px;
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.75);
+  border: 1px solid rgba(139,92,246,0.1);
 }
-.empty p { margin-bottom: 8px; font-size: 1rem; }
+.empty p { margin-bottom: 8px; font-size: 0.95rem; }
 .searchBtn {
   margin-top: 20px;
-  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  background: linear-gradient(135deg, #a855f7, #6366f1);
   color: white;
   border: none;
   border-radius: 12px;
   padding: 12px 26px;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(14,165,233,0.3);
+  box-shadow: 0 4px 16px rgba(168,85,247,0.3);
+  transition: all 0.2s;
 }
+.searchBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(168,85,247,0.4); }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 .card {
-  background: rgba(255,255,255,0.60);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
   border-radius: 18px;
   padding: 22px;
-  border: 1px solid rgba(255,255,255,0.80);
-  box-shadow: 0 6px 24px rgba(14,165,233,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(139,92,246,0.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  animation: fadeUp 0.4s ease both;
 }
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(14,165,233,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+  border-color: rgba(139,92,246,0.28);
 }
 .cardTop { margin-bottom: 16px; }
-.cardTop h3 { font-size: 1.15rem; color: #0f172a; margin-bottom: 5px; font-weight: 700; }
+.cardTop h3 { font-size: 1.1rem; color: #f1f5f9; margin-bottom: 8px; font-weight: 700; }
 .threshold {
-  font-size: 0.82rem;
-  color: #f94716;
+  font-size: 0.78rem;
+  color: #fb923c;
   font-weight: 600;
   background: rgba(249,115,22,0.1);
   padding: 3px 10px;
   border-radius: 20px;
   display: inline-block;
+  border: 1px solid rgba(249,115,22,0.2);
 }
 .cardActions { display: flex; gap: 8px; flex-wrap: wrap; }
 .viewBtn, .histBtn, .removeBtn {
   padding: 8px 14px;
   border-radius: 10px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   border: none;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: all 0.2s;
 }
-.viewBtn:hover, .histBtn:hover, .removeBtn:hover { opacity: 0.88; transform: translateY(-1px); }
-.viewBtn { background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; box-shadow: 0 3px 8px rgba(14,165,233,0.25); }
-.histBtn { background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; box-shadow: 0 3px 8px rgba(139,92,246,0.25); }
-.removeBtn { background: rgba(255,255,255,0.75); color: #595f64; border: 1px solid #e2e8f0; }
+.viewBtn:hover, .histBtn:hover, .removeBtn:hover { transform: translateY(-2px); }
+.viewBtn { background: linear-gradient(135deg, #38bdf8, #0284c7); color: white; box-shadow: 0 3px 10px rgba(56,189,248,0.25); }
+.histBtn { background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; box-shadow: 0 3px 10px rgba(139,92,246,0.25); }
+.removeBtn { background: rgba(255,255,255,0.05); color: #64748b; border: 1px solid rgba(255,255,255,0.08); }
+.removeBtn:hover { background: rgba(239,68,68,0.1); color: #fca5a5; border-color: rgba(239,68,68,0.2); }

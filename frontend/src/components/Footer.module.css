@@ -1,18 +1,16 @@
 .footer {
-  background: rgba(255,255,255,0.45);
-  backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,0.6);
-  padding: 22px 32px;
+  background: rgba(13,17,23,0.70);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(139,92,246,0.12);
+  padding: 20px 32px;
   text-align: center;
 }
 .quote {
-  color: #0369a1;
+  color: #a78bfa;
   font-style: italic;
-  font-size: 0.95rem;
-  margin-bottom: 6px;
+  font-size: 0.88rem;
+  margin-bottom: 5px;
   font-weight: 500;
+  opacity: 0.85;
 }
-.copy {
-  color: #64748b;
-  font-size: 0.8rem;
-}
+.copy { color: #334155; font-size: 0.76rem; }

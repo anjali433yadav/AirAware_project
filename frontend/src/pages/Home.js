@@ -19,7 +19,7 @@ export default function Home() {
       {/* Hero */}
       <section className={styles.hero}>
         <h1 className={styles.heroTitle}>
-          Breathe Easy.<br />Live Better.
+          Breathe <span>Easy.</span><br />Live <span>Better.</span>
         </h1>
         <p className={styles.heroSub}>
           Real-time air quality tracking, personalized health advice, and<br />

@@ -1,61 +1,71 @@
 .card {
-  background: rgba(255,255,255,0.60);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 22px;
   padding: 28px;
-  border: 1px solid rgba(255,255,255,0.75);
-  box-shadow: 0 8px 32px rgba(14,165,233,0.10);
+  border: 1px solid rgba(139,92,246,0.15);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+  animation: fadeUp 0.4s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 24px;
 }
-.city { font-size: 1.5rem; font-weight: 700; color: #0f172a; }
-.timestamp { display: block; font-size: 0.78rem; color: #64748b; margin-top: 4px; }
+.city { font-size: 1.5rem; font-weight: 800; color: #f1f5f9; }
+.timestamp { display: block; font-size: 0.76rem; color: #475569; margin-top: 4px; }
 .aqiBadge {
-  padding: 8px 20px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 1rem;
+  padding: 10px 22px;
+  border-radius: 22px;
+  font-weight: 800;
+  font-size: 1.05rem;
   color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  letter-spacing: 0.3px;
 }
 .metrics {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
-  margin-bottom: 26px;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 .metric {
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.05);
   border-radius: 14px;
-  padding: 14px;
+  padding: 14px 10px;
   text-align: center;
-  border: 1px solid rgba(14,165,233,0.15);
-  box-shadow: 0 2px 8px rgba(14,165,233,0.07);
-  transition: transform 0.2s;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
 }
-.metric:hover { transform: translateY(-2px); }
-.metricLabel { display: block; font-size: 0.78rem; color: #64748b; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.metricValue { display: block; font-size: 1.3rem; font-weight: 800; color: #0ea5e9; }
-.metricUnit { display: block; font-size: 0.7rem; color: #94a3b8; margin-top: 2px; }
-.adviceSection h3 { color: #0369a1; margin-bottom: 14px; font-size: 1rem; font-weight: 700; }
+.metric:hover {
+  transform: translateY(-3px);
+  background: rgba(139,92,246,0.08);
+  border-color: rgba(139,92,246,0.2);
+}
+.metricLabel { display: block; font-size: 0.72rem; color: #475569; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.metricValue { display: block; font-size: 1.25rem; font-weight: 800; color: #a78bfa; }
+.metricUnit { display: block; font-size: 0.65rem; color: #334155; margin-top: 3px; }
+.adviceSection h3 { color: #94a3b8; margin-bottom: 14px; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 .adviceGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 .adviceCard {
-  background: rgba(255,255,255,0.70);
+  background: rgba(255,255,255,0.03);
   border-radius: 14px;
   padding: 16px;
-  border: 1px solid rgba(99,102,241,0.15);
-  box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s, border-color 0.2s;
 }
-.adviceCard span { font-size: 0.85rem; font-weight: 700; color: #6366f1; display: block; margin-bottom: 6px; }
-.adviceCard p { font-size: 0.85rem; color: #334155; line-height: 1.55; }
+.adviceCard:hover { background: rgba(139,92,246,0.06); border-color: rgba(139,92,246,0.15); }
+.adviceCard span { font-size: 0.82rem; font-weight: 700; color: #a78bfa; display: block; margin-bottom: 8px; }
+.adviceCard p { font-size: 0.82rem; color: #64748b; line-height: 1.6; }

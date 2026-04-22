@@ -1,51 +1,56 @@
 .page {
   min-height: 100vh;
-  background: radial-gradient(ellipse at 60% 40%, rgba(139,92,246,0.18) 0%, transparent 60%),
-              radial-gradient(ellipse at 20% 80%, rgba(56,189,248,0.12) 0%, transparent 50%),
-              linear-gradient(160deg, #0a0f1e 0%, #0f172a 50%, #1a0a2e 100%);
+  background:
+    radial-gradient(ellipse at 65% 35%, rgba(139,92,246,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 75%, rgba(56,189,248,0.13) 0%, transparent 50%),
+    linear-gradient(160deg, #0a0f1e 0%, #0f172a 55%, #130d24 100%);
   display: flex;
   flex-direction: column;
 }
 
-/* Navbar */
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 48px;
+  animation: fadeDown 0.5s ease both;
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .brand {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #38bdf8, #a855f7);
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 .navBtns { display: flex; gap: 12px; }
 .loginBtn {
   background: transparent;
-  color: #e2e8f0;
-  border: 1.5px solid rgba(255,255,255,0.25);
+  color: #cbd5e1;
+  border: 1.5px solid rgba(255,255,255,0.15);
   padding: 8px 24px;
   border-radius: 8px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.2s;
 }
-.loginBtn:hover { border-color: #38bdf8; color: #38bdf8; }
+.loginBtn:hover { border-color: #a78bfa; color: #a78bfa; transform: translateY(-1px); }
 .registerBtn {
   background: linear-gradient(135deg, #a855f7, #6366f1);
   color: white;
   border: none;
   padding: 8px 24px;
   border-radius: 8px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(168,85,247,0.35);
-  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 16px rgba(168,85,247,0.35);
+  transition: all 0.2s;
 }
-.registerBtn:hover { opacity: 0.88; transform: translateY(-1px); }
+.registerBtn:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168,85,247,0.45); }
 
 /* Hero */
 .hero {
@@ -56,64 +61,79 @@
   justify-content: center;
   text-align: center;
   padding: 60px 24px 40px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .heroTitle {
-  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
   font-weight: 900;
   color: #f1f5f9;
-  line-height: 1.15;
+  line-height: 1.12;
   margin-bottom: 20px;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
+}
+.heroTitle span {
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .heroSub {
   font-size: 1.05rem;
-  color: #94a3b8;
-  line-height: 1.7;
-  max-width: 520px;
-  margin-bottom: 36px;
+  color: #64748b;
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: 38px;
 }
 .heroBtns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 .getStarted {
   background: linear-gradient(135deg, #a855f7, #6366f1);
   color: white;
   border: none;
-  padding: 13px 32px;
-  border-radius: 10px;
+  padding: 14px 34px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 700;
-  box-shadow: 0 6px 20px rgba(168,85,247,0.4);
-  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 6px 24px rgba(168,85,247,0.4);
+  transition: all 0.25s;
 }
-.getStarted:hover { opacity: 0.9; transform: translateY(-2px); }
+.getStarted:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(168,85,247,0.5); }
 .signIn {
-  background: transparent;
-  color: #e2e8f0;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  padding: 13px 32px;
-  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  color: #cbd5e1;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  padding: 14px 34px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.2s;
 }
-.signIn:hover { border-color: #38bdf8; color: #38bdf8; }
+.signIn:hover { border-color: #a78bfa; color: #a78bfa; transform: translateY(-2px); }
 
 /* Feature Cards */
 .features {
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 0 48px 60px;
+  padding: 0 48px 64px;
   flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.25s both;
 }
 .card {
   background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 28px 28px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  padding: 30px 26px;
   width: 260px;
   text-align: center;
-  transition: transform 0.2s, background 0.2s;
+  transition: transform 0.25s, background 0.25s, border-color 0.25s;
 }
-.card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.07); }
+.card:hover {
+  transform: translateY(-6px);
+  background: rgba(139,92,246,0.07);
+  border-color: rgba(139,92,246,0.25);
+}
 .cardTitle { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
-.card p { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
+.card p { color: #64748b; font-size: 0.88rem; line-height: 1.65; }
