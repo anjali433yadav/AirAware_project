@@ -11,7 +11,7 @@ const thoughts = [
 
 export default function Footer() {
   const { pathname } = useLocation();
-  const authPages = ['/login', '/register'];
+  const authPages = ['/login', '/register', '/'];
   if (authPages.includes(pathname)) return null;
 
   const quote = thoughts[Math.floor(Date.now() / 86400000) % thoughts.length];

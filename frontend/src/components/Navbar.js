@@ -8,8 +8,8 @@ export default function Navbar() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  // Hide navbar entirely on auth pages
-  const authPages = ['/login', '/register'];
+  // Hide navbar on auth pages and home (home has its own nav)
+  const authPages = ['/login', '/register', '/'];
   if (authPages.includes(pathname)) return null;
 
   const handleLogout = () => {

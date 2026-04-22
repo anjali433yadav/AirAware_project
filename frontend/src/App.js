@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import LocationGate from './pages/LocationGate';
@@ -11,7 +12,7 @@ import DeniedPage from './pages/DeniedPage';
 import CityDetail from './pages/CityDetail';
 import Favorites from './pages/Favorites';
 
-const AUTH_PAGES = ['/login', '/register'];
+const AUTH_PAGES = ['/login', '/register', '/'];
 
 function BackgroundSwitcher() {
   const { pathname } = useLocation();
@@ -37,6 +38,7 @@ export default function App() {
         <BackgroundSwitcher />
         <Navbar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/location" element={<PrivateRoute><LocationGate /></PrivateRoute>} />
@@ -44,7 +46,7 @@ export default function App() {
           <Route path="/denied" element={<PrivateRoute><DeniedPage /></PrivateRoute>} />
           <Route path="/city/:cityName" element={<PrivateRoute><CityDetail /></PrivateRoute>} />
           <Route path="/favorites" element={<PrivateRoute><Favorites /></PrivateRoute>} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
       </BrowserRouter>
