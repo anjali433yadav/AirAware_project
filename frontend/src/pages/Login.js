@@ -49,6 +49,7 @@ export default function Login() {
         </form>
 
         <p className={styles.link}>Don't have an account? <Link to="/register">Register here</Link></p>
+        <p className={styles.link}><Link to="/">← Back to Home</Link></p>
       </div>
     </div>
   );
