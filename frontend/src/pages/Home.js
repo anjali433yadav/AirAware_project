@@ -25,14 +25,6 @@ export default function Home() {
           Real-time air quality tracking, personalized health advice, and<br />
           smart alerts to keep you and your loved ones protected.
         </p>
-        <div className={styles.heroBtns}>
-          <button className={styles.getStarted} onClick={() => navigate('/register')}>
-            Get Started Free
-          </button>
-          <button className={styles.signIn} onClick={() => navigate('/login')}>
-            Sign In
-          </button>
-        </div>
       </section>
 
       {/* Feature Cards */}
