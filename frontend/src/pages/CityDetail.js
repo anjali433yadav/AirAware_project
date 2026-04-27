@@ -69,11 +69,11 @@ export default function CityDetail() {
   useEffect(() => { fetchData(); }, [fetchData]);
 
   useEffect(() => {
-    if (airData && searchParams.get('history') === '1' && history.length === 0) {
+    if (airData && canShowHistory && searchParams.get('history') === '1' && history.length === 0) {
       fetchHistory();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [airData]);
+  }, [airData, canShowHistory]);
 
   const fetchHistory = async () => {
     try {
@@ -102,6 +102,11 @@ export default function CityDetail() {
     if (airData && airData.aqi >= val) setThresholdAlert(true);
     else setThresholdAlert(false);
   };
+
+  const storedCity = sessionStorage.getItem('cityName');
+  const lat = sessionStorage.getItem('lat');
+  const isLiveCity = !!(lat && storedCity && storedCity.toLowerCase() === (airData?.city || '').toLowerCase());
+  const canShowHistory = isFav || isLiveCity;
 
   const chartOptions = {
     responsive: true,
@@ -140,9 +145,11 @@ export default function CityDetail() {
               <button className={isFav ? styles.favActive : styles.favBtn} onClick={toggleFavorite}>
                 {isFav ? '⭐ Saved' : '☆ Favorite'}
               </button>
-              <button className={styles.histBtn} onClick={showHistory ? () => setShowHistory(false) : fetchHistory}>
-                📊 {showHistory ? 'Hide' : 'Show'} 7-Day History
-              </button>
+              {canShowHistory && (
+                <button className={styles.histBtn} onClick={showHistory ? () => setShowHistory(false) : fetchHistory}>
+                  📊 {showHistory ? 'Hide' : 'Show'} 7-Day History
+                </button>
+              )}
             </>
           )}
         </div>
