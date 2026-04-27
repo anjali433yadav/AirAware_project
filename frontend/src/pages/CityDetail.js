@@ -68,6 +68,12 @@ export default function CityDetail() {
 
   useEffect(() => { fetchData(); }, [fetchData]);
 
+  // Check if city is live location or favorite
+  const storedCity = sessionStorage.getItem('cityName');
+  const lat = sessionStorage.getItem('lat');
+  const isLiveCity = !!(lat && storedCity && storedCity.toLowerCase() === (airData?.city || '').toLowerCase());
+  const canShowHistory = isFav || isLiveCity;
+
   useEffect(() => {
     if (airData && canShowHistory && searchParams.get('history') === '1' && history.length === 0) {
       fetchHistory();
@@ -102,11 +108,6 @@ export default function CityDetail() {
     if (airData && airData.aqi >= val) setThresholdAlert(true);
     else setThresholdAlert(false);
   };
-
-  const storedCity = sessionStorage.getItem('cityName');
-  const lat = sessionStorage.getItem('lat');
-  const isLiveCity = !!(lat && storedCity && storedCity.toLowerCase() === (airData?.city || '').toLowerCase());
-  const canShowHistory = isFav || isLiveCity;
 
   const chartOptions = {
     responsive: true,
